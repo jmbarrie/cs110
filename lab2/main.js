@@ -1,9 +1,8 @@
 
 var currentState = ['','','','','','','','',''];
-
-var player1 = 'X';
-var player2 = 'O';
 var moveCounter = 0;
+
+document.getElementsByClassName('display_player')[0].innerHTML = 'X';
 
 const winningMoves = [[1, 2, 3],
                       [1, 4, 7],
@@ -25,27 +24,29 @@ function cellClicked (event) {
         alert('Space taken, choose a new one.');
     } else {
         validMove(event, cellIndex);
+        moveCounter += 1;
     }
     
     if (movesLeft() === 0) {
         alert('No more moves');
     } 
 
-    moveCounter += 1;
 
     return;
 }
 
 function validMove (currentEvent, index) {
     const cellId = currentEvent.target.id;
+    var player = '';
 
     if (moveCounter % 2 === 0) {
-        currentState[index] = player1;
-        document.getElementById(cellId).getElementsByClassName('xo')[0].innerHTML = player1;
+        player = 'X';
     } else {
-        currentState[index] = player2;
-        document.getElementById(cellId).getElementsByClassName('xo')[0].innerHTML = player2;
+        player = 'O';
     }
+        currentState[index] = player;
+        document.getElementById(cellId).getElementsByClassName('xo')[0].innerHTML = player;
+        document.getElementsByClassName('display_player')[0].innerHTML = player;
 
     return;
 }

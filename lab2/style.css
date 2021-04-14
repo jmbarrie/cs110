@@ -59,7 +59,8 @@ h1 {
 .xo {
   color: black;
   font-weight: bold;
-  font-size: 8em;
+  /* font-size: 8em; */
+  font-size: 150px;
   margin: 0 auto;
   position: absolute;
   width: 100%;

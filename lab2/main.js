@@ -28,7 +28,7 @@ function cellClicked (event) {
     }
     
     if (movesLeft() === 0) {
-        gameFinished();
+        alert('No more moves');
     } 
 
     moveCounter += 1;
@@ -73,3 +73,4 @@ function mouseOut (event) {
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClicked));
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseover', mouseOver));
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseout', mouseOut));
+document.getElementById('new_game').addEventListener('click', gameFinished);

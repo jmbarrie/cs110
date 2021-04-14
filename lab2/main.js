@@ -1,8 +1,10 @@
 
 var currentState = ['','','','','','','','',''];
+var scores = [0, 0];
 var moveCounter = 0;
 
 document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
 
 const winningMoves = [[1, 2, 3],
                       [1, 4, 7],
@@ -23,7 +25,8 @@ function cellClicked (event) {
     if (currentState[cellIndex] !== '') {
         alert('Space taken, choose a new one.');
     } else {
-        validMove(event, cellIndex);
+        var player = playerTurn();
+        validMove(event, cellIndex, player);
         moveCounter += 1;
     }
     
@@ -31,12 +34,16 @@ function cellClicked (event) {
         alert('No more moves');
     } 
 
+    if (player === 'X') {
+        document.getElementsByClassName('display_player')[0].innerHTML = 'O';
+    } else {
+        document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+    }
 
     return;
 }
 
-function validMove (currentEvent, index) {
-    const cellId = currentEvent.target.id;
+function playerTurn () {
     var player = '';
 
     if (moveCounter % 2 === 0) {
@@ -44,9 +51,14 @@ function validMove (currentEvent, index) {
     } else {
         player = 'O';
     }
-        currentState[index] = player;
-        document.getElementById(cellId).getElementsByClassName('xo')[0].innerHTML = player;
-        document.getElementsByClassName('display_player')[0].innerHTML = player;
+
+    return player;
+}
+
+function validMove (currentEvent, index, player) {
+    const cellId = currentEvent.target.id;
+    currentState[index] = player;
+    document.getElementById(cellId).getElementsByClassName('xo')[0].innerHTML = player;
 
     return;
 }
@@ -60,6 +72,7 @@ function movesLeft () {
 function gameFinished () {
     currentState = ['','','','','','','','',''];
     document.querySelectorAll('.cell').forEach(cell => cell.getElementsByClassName('xo')[0].innerHTML = '');
+    document.getElementsByClassName('display_player')[0].innerHTML = 'X';
     moveCounter = 0;
 }
 

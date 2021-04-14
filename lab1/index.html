@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Lab 1 Twitter Clone</title>
+  </head>
+  <body>
+    <!-- TODO: Create HTML elements for Twitter mockup inside body -->
+    <div class="header" role="navigation">
+      <div class="header_text">
+        <div class="flex_header">
+          <div class="header_button">
+            <h1>Home</h1>
+          </div>
+          <div class="header_button">
+            <h1>Moments</h1>
+          </div>
+          <div class="header_button">
+            <h1>Notifications</h1>
+          </div>
+          <div class="header_button">
+            <h1>Messages</h1>
+          </div>
+          <div class="header_logo">
+            <img src="images/twitter-logo.png" alt="Twitter logo.">
+            <a href="content-left" style="display: none;">Jump to Tweets!</a>
+          </div>
+        </div>
+      </div>
+      <button class="header_tweet_button">Tweet</button>
+    </div>
+
+    <div class="content-wrapper flex">
+      <div class="content-left">
+        <div class="content-left-top">
+          <img id="bruce_banner" src="images/ratatouille-banner.png" alt="Remy's banner photo.">
+        </div>
+        <div class="content-left-mid">
+          <img id="profile_pic" src="images/ratatouille.jpg" style="margin-left: 15px; margin-top: 15px;" alt="Remy's profile picture.">
+          <h1>Remy</h1>
+          <h2>@remy</h2>
+        </div>
+        <div class="content-left-bot">
+          <table>
+            <thead>
+               <tr>
+                  <th>Tweets</th>
+                  <th>Following</th>
+                  <th>Followers</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>5049</td>
+                  <td>324</td>
+                  <td>809</td>
+               </tr>
+            </tbody>
+         </table>
+        </div>
+      </div>
+
+      <div class="content-center" role="main">
+        <div class="tweet">
+          <div class="tweet_profile_pic">
+            <img src="images/ratatouille.jpg" alt="Remy's profile picture.">
+          </div>
+          <div class="tweet_header">
+              <h1>Remy</h1>
+              <h2>@remy Nov 19</h2>
+          </div>
+          <div class="tweet_body">
+            <p>I'm taking this class called CS110 and the TAs are so <span style="font-weight: bold;">cool</span>!</p>
+          </div>
+        </div>
+        <div class="tweet">
+          <div class="tweet_profile_pic">
+            <img src="images/ratatouille.jpg" alt="Remy's profile picture.">
+          </div>
+          <div class="tweet_header">
+              <h1>Remy</h1>
+              <h2>@remy Nov 19</h2>
+          </div>
+          <div class="tweet_body">
+            <p>It's 2007. You just got home from elementary school. Your mom has pizza bagels in the oven. Ratatouille is in theaters. Life is good.</p>
+          </div>
+        </div>
+        <div class="tweet">
+          <div class="tweet_profile_pic">
+            <img src="images/ratatouille.jpg" alt="Remy's profile picture.">
+          </div>
+          <div class="tweet_header">
+              <h1>Remy</h1>
+              <h2>@remy Nov 19</h2>
+          </div>
+          <div class="tweet_body">
+            <p>Let's make some pasta!</p>
+          </div>
+        </div>
+        <div class="tweet">
+          <div class="tweet_profile_pic">
+            <img src="images/ratatouille.jpg" alt="Remy's profile picture.">
+          </div>
+          <div class="tweet_header">
+              <h1>Remy</h1>
+              <h2>@remy Nov 19</h2>
+          </div>
+          <div class="tweet_body">
+            <p>Let's make some pasta!</p>
+          </div>
+        </div>
+        <div class="tweet">
+          <div class="tweet_profile_pic">
+            <img src="images/ratatouille.jpg" alt="Remy's profile picture.">
+          </div>
+          <div class="tweet_header">
+              <h1>Remy</h1>
+              <h2>@remy Nov 19</h2>
+          </div>
+          <div class="tweet_body">
+            <p>Let's make some pasta!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-right">
+        <h1>Who to follow</h1>
+
+        <div class="user_profile">
+          <div class="tweet_profile_pic">
+            <img style="margin-left: 3%;" src="images/linguini.png" alt="Linguini's profile picture.">
+          </div>
+          <div class="tweet_header">
+            <h1 style="margin-left: 10%;">Linguini</h1>
+            <h2>@linguini</h2>
+          </div>
+          <button class="follow_button">Follow</button>
+        </div>
+        <div class="user_profile">
+          <div class="tweet_profile_pic">
+            <img style="margin-top: 5%; margin-left: 5%;" src="images/ratatouille.jpg" alt="CS110 TA's profile picture.">
+          </div>
+          <div  class="tweet_header">
+            <h1 style="margin-top: 5%; margin-left: 10%;">CS110 TA</h1>
+            <h2 style="margin-top: 5%;">@cs</h2>
+          </div>
+          <button class="follow_button">Follow</button>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -3,20 +3,6 @@ var currentState = ['','','','','','','','',''];
 var scores = [0, 0];
 var moveCounter = 0;
 
-document.getElementsByClassName('display_player')[0].innerHTML = 'X';
-document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
-
-const winningMoves = [[1, 2, 3],
-                      [1, 4, 7],
-                      [1, 5, 9],
-                      [4, 5, 6],
-                      [7, 8, 9],
-                      [2, 5, 8],
-                      [3, 6, 9],
-                      [3, 5, 7]
-                    ];
-
-
 function cellClicked (event) {
     // Get the index of the cell [1, ... , 9], subtract one for array indexing
     const cellIndex = parseInt( event.target.id ) - 1;
@@ -32,15 +18,54 @@ function cellClicked (event) {
     
     if (movesLeft() === 0) {
         alert('No more moves');
-    } 
+    } else if (playerWin(player)) {
+        alert('someone won!');
 
-    if (player === 'X') {
-        document.getElementsByClassName('display_player')[0].innerHTML = 'O';
     } else {
-        document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+        if (player === 'X') {
+            document.getElementsByClassName('display_player')[0].innerHTML = 'O';
+        } else {
+            document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+        }
     }
 
     return;
+}
+
+function playerWin(player) {
+    const winningMoves = [[1, 2, 3],
+                          [1, 4, 7],
+                          [1, 5, 9],
+                          [4, 5, 6],
+                          [7, 8, 9],
+                          [2, 5, 8],
+                          [3, 6, 9],
+                          [3, 5, 7]
+                        ];
+
+    var winner = '';
+    var playerArray = [];
+
+    for (var i = 0; i < currentState.length; ++i) {
+        if (currentState[i] == player) {
+            playerArray.push(i + 1);
+        }
+    }
+
+    for (var i = 0; i < winningMoves.length; ++i) {
+        const winningMove = winningMoves[i];
+        var val1 = currentState[winningMove[0]];
+        var val2 = winningMove[1];
+        var val3 = winningMove[2];
+
+        if ((val1 === val2) && (val2 === val3)) {
+            alert('Winner winner chicken dinner');
+        }
+    }
+
+    alert('Player array: ' + playerArray);
+
+    return winner;
 }
 
 function playerTurn () {
@@ -76,6 +101,12 @@ function gameFinished () {
     moveCounter = 0;
 }
 
+function resetMatch() {
+    gameFinished();
+    scores = [0, 0];
+    document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
+}
+
 function mouseOver (event) {
     document.getElementById(event.target.id).style.backgroundColor = 'green';
 }
@@ -88,3 +119,6 @@ document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click'
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseover', mouseOver));
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseout', mouseOut));
 document.getElementById('new_game').addEventListener('click', gameFinished);
+document.getElementById('reset_match').addEventListener('click', resetMatch);
+document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];

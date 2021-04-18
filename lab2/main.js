@@ -18,8 +18,13 @@ function cellClicked (event) {
     
     if (movesLeft() === 0) {
         alert('No more moves');
-    } else if (playerWin(player)) {
-        alert('someone won!');
+    } else if (playerWin()) {
+        if (player === 'X') {
+            scores[0] += 1;
+        } else {
+            scores[1] += 1;
+        }
+        document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
 
     } else {
         if (player === 'X') {
@@ -32,38 +37,32 @@ function cellClicked (event) {
     return;
 }
 
-function playerWin(player) {
-    const winningMoves = [[1, 2, 3],
+function playerWin() {
+    const winningMoves = [[0, 1, 2],
+                          [0, 3, 6],
+                          [0, 4, 8],
+                          [3, 4, 5],
+                          [6, 7, 8],
                           [1, 4, 7],
-                          [1, 5, 9],
-                          [4, 5, 6],
-                          [7, 8, 9],
                           [2, 5, 8],
-                          [3, 6, 9],
-                          [3, 5, 7]
+                          [2, 4, 6]
                         ];
 
-    var winner = '';
+    var winner = false;
     var playerArray = [];
-
-    for (var i = 0; i < currentState.length; ++i) {
-        if (currentState[i] == player) {
-            playerArray.push(i + 1);
-        }
-    }
 
     for (var i = 0; i < winningMoves.length; ++i) {
         const winningMove = winningMoves[i];
         var val1 = currentState[winningMove[0]];
-        var val2 = winningMove[1];
-        var val3 = winningMove[2];
+        var val2 = currentState[winningMove[1]];
+        var val3 = currentState[winningMove[2]];
 
-        if ((val1 === val2) && (val2 === val3)) {
-            alert('Winner winner chicken dinner');
+        if (val1 !== '' && val2 !== '' && val3 !== '') {
+            if ((val1 === val2) && (val2 === val3)) {
+                winner = true;
+            }
         }
     }
-
-    alert('Player array: ' + playerArray);
 
     return winner;
 }

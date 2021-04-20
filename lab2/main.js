@@ -25,6 +25,7 @@ function cellClicked (event) {
             scores[1] += 1;
         }
         document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
+        gameFinished()
 
     } else {
         if (player === 'X') {

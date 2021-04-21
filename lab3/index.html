@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Twitter</title>
+  </head>
+  <body>
+    <div class="nav" role="navigation">
+      <a id="left_marg_pls" href="#content-center">Home</a>
+      <a href="">Moments</a>
+      <a href="">Notifications</a>
+      <a href="">Messages</a>
+      <img class="logo" src="./images/twitter-logo.png" alt="Twitter's logo" />
+      <button class="tweet_button">Tweet</button>
+    </div>
+    <div class="flex-container">
+      <!-- Left section w/ pfp + banner -->
+      <div class="flex-child content-left">
+        <div class="cover-picture">
+          <img
+            class="banner"
+            src="./images/ratatouille-banner.png"
+            alt="ratatouille-banner"
+          />
+        </div>
+        <div class="profile-picture">
+          <img
+            class="pfp"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p id="username">Remy</p>
+          <p id="user_tag">@remy</p>
+        </div>
+        <div class="profile-stats">
+          <table>
+            <tr>
+              <th>Tweets</th>
+              <th>Following</th>
+              <th>Followers</th>
+            </tr>
+            <tr>
+              <td>5049</td>
+              <td>324</td>
+              <td>809</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- Middle section w/ tweets -->
+      <div class="flex-child content-center" role="main">
+        <div class="tweet">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">Remy</p>
+          <p class="grey">@remy Nov 19</p>
+          <p>
+            I'm taking this class called CS 110 and the TAs are so
+            <strong>cool</strong>!
+          </p>
+        </div>
+        <div class="tweet">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">Remy</p>
+          <p class="grey">@remy Nov 19</p>
+          <p class="needs_space">
+            It's 2007. You just got home from elementary school. Your mom has
+            pizza bagels in the oven. Ratatouille is in theaters. Life is good
+          </p>
+        </div>
+        <div class="tweet">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">Remy</p>
+          <p class="grey">@remy Nov 19</p>
+          <p>Let's make some pasta!</p>
+        </div>
+        <div class="tweet">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">Remy</p>
+          <p class="grey">@remy Nov 19</p>
+          <p>Let's make some pasta!</p>
+        </div>
+        <div class="tweet">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">Remy</p>
+          <p class="grey">@remy Nov 19</p>
+          <p>Let's make some pasta!</p>
+        </div>
+      </div>
+      <!-- Right section w/ Who To Follow -->
+      <div class="flex-child content-right">
+        <h2>Who to follow</h2>
+        <div class="recommend">
+          <img
+            class="linguini"
+            src="./images/linguini.png"
+            alt="Picture of Linguini"
+          />
+          <p class="name">Linguini</p>
+          <p class="grey">@linguini</p>
+          <button class="follow_button">Follow</button>
+        </div>
+        <div class="recommend">
+          <img
+            class="pfp_post"
+            src="./images/ratatouille.jpg"
+            alt="picture of a rat, but he's wearing a chef's hat"
+          />
+          <p class="name">CS 110 TA</p>
+          <p class="grey">@cs</p>
+          <br />
+          <button class="follow_button">Follow</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

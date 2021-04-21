@@ -1,0 +1,209 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #e6ecf0;
+}
+
+/* Navigation bar location */
+.nav {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  z-index: 100;
+  display: flex;
+}
+
+#left_marg_pls {
+  margin-left: 150px;
+}
+
+/* Styling the navigation buttons */
+.nav a {
+  float: left;
+  color: gray;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* Change the color when hovering */
+.nav a:hover {
+  background-color: white;
+  color: #1da1f2;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+  width: 1em;
+  height: 1em;
+}
+
+/* Content Wrapper */
+.flex-container {
+  margin: 56px auto;
+  max-width: 1190px;
+  display: flex;
+}
+
+/* Each section is a child with 10px space in between */
+.flex-child {
+  margin-right: 10px;
+}
+
+/* Left section */
+div.content-left {
+  width: 290px;
+  background-color: white;
+  max-height: 220px;
+}
+
+.tweet_button {
+  margin: 10px 30px 10px auto;
+  border: 1px solid #04aced;
+  background: #1da1f2;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 24px;
+  outline: transparent;
+}
+
+.banner {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.pfp {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  padding: 2px;
+  object-fit: cover;
+  float: left;
+  margin-right: 10px;
+  transform: translateY(-40px);
+}
+
+#username {
+  font-weight: bold;
+  text-decoration: underline;
+  transform: translateY(-15px);
+}
+
+#user_tag {
+  color: grey;
+  transform: translateY(-30px);
+}
+
+table {
+  border-spacing: 15px;
+}
+
+th {
+  color: gray;
+}
+
+td {
+  font-weight: bold;
+  color: #1da1f2;
+}
+
+/* Center section */
+.content-center {
+  width: fit-content;
+}
+
+/* Pfp different from left section because smaller */
+.pfp_post {
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  background-color: white;
+  padding: 2px;
+  object-fit: cover;
+  float: left;
+  margin-right: 10px;
+}
+
+.needs_space {
+  margin-left: 62px;
+}
+
+.name {
+  font-weight: bold;
+  display: inline;
+}
+
+.grey {
+  color: gray;
+  display: inline;
+}
+
+/* Each tweet is it's own section */
+.tweet {
+  width: 610px;
+  float: left;
+  background-color: white;
+  border-bottom: 1px solid #e6ecf0;
+  min-height: 51px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+/* Right section */
+.content-right {
+  max-height: 240px;
+  background-color: white;
+}
+
+@media (max-width: 1200px) {
+  .content-right {
+    display: none;
+  }
+}
+
+h2 {
+  padding-left: 10px;
+}
+
+.recommend {
+  width: 290px;
+  float: left;
+  background-color: white;
+  border-bottom: 2px solid #e6ecf0;
+  min-height: 51px;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.linguini {
+  border-radius: 50%;
+  height: 48px;
+  background-color: white;
+  padding: 2px;
+  object-fit: cover;
+  float: left;
+  margin-right: 10px;
+}
+
+.follow_button {
+  margin: 10px auto 10px auto;
+  border: 1px solid #04aced;
+  background: transparent;
+  border-radius: 50px;
+  color: #04aced;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 24px;
+  outline: transparent;
+}

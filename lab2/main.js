@@ -2,6 +2,7 @@
 var currentState = ['','','','','','','','',''];
 var scores = [0, 0];
 var moveCounter = 0;
+var PvpEnabled = true;
 
 function cellClicked (event) {
     // Get the index of the cell [1, ... , 9], subtract one for array indexing
@@ -11,15 +12,25 @@ function cellClicked (event) {
     if (currentState[cellIndex] !== '') {
         alert('Space taken, choose a new one.');
     } else {
-        var player = playerTurn();
+        if (PvpEnabled) {
+            var player = playerTurn();
+        } else {
+            var player = 'X'
+        }
+
         validMove(event, cellIndex, player);
         moveCounter += 1;
     }
     
     if (movesLeft() === 0) {
         alert('No more moves');
-    } else if (playerWin()) {
-        if (player === 'X') {
+    } else if (!PvpEnabled) {
+        var cellAi = currentState.indexOf('') + 1;
+        document.getElementById(cellAi.toString()).getElementsByClassName('xo')[0].innerHTML = 'O';
+        currentState[cellAi - 1] = 'O';
+    } 
+    if (playerWin()) {
+        if (player === playerWin()) {
             scores[0] += 1;
         } else {
             scores[1] += 1;
@@ -28,11 +39,13 @@ function cellClicked (event) {
         gameFinished()
 
     } else {
-        if (player === 'X') {
-            document.getElementsByClassName('display_player')[0].innerHTML = 'O';
-        } else {
-            document.getElementsByClassName('display_player')[0].innerHTML = 'X';
-        }
+        if (PvpEnabled) {
+            if (player === 'X') {
+                document.getElementsByClassName('display_player')[0].innerHTML = 'O';
+            } else {
+                document.getElementsByClassName('display_player')[0].innerHTML = 'X';
+            }
+        } 
     }
 
     return;
@@ -60,7 +73,7 @@ function playerWin() {
 
         if (val1 !== '' && val2 !== '' && val3 !== '') {
             if ((val1 === val2) && (val2 === val3)) {
-                winner = true;
+                winner = val1;
             }
         }
     }
@@ -107,6 +120,14 @@ function resetMatch() {
     document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];
 }
 
+function enableAI () {
+    if (PvpEnabled) {
+        PvpEnabled = false;
+    } else {
+        PvpEnabled = true;
+    }
+}
+
 function mouseOver (event) {
     document.getElementById(event.target.id).style.backgroundColor = 'green';
 }
@@ -120,5 +141,6 @@ document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseo
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('mouseout', mouseOut));
 document.getElementById('new_game').addEventListener('click', gameFinished);
 document.getElementById('reset_match').addEventListener('click', resetMatch);
+document.getElementById('enable_pvp').addEventListener('click', enableAI);
 document.getElementsByClassName('display_player')[0].innerHTML = 'X';
 document.getElementsByClassName('player_scores')[0].innerHTML = 'X: ' + scores[0] + ' O: ' + scores[1];

@@ -22,7 +22,7 @@ h2 {
 }
 
 /* Button: NewGame and Reset */
-.new_game, .reset {
+.new_game, .reset, .pvp_enable {
   text-align:center;
   background-color: #ff8c00;
   color: #000000;

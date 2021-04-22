@@ -13,7 +13,8 @@ function get_data(url) {
         .then(data => {
             for (let i = 0; i < data["statuses"].length; i++) {
                 // document.write("ID: " + data["statuses"][i]["text"] + "\n")
-                tweets.push(data["statuses"][i]["text"])
+                // tweets.push(data["statuses"][i]["text"])
+                create_elements(data["statuses"][i]["text"])
             }
             console.log(data)
         })
@@ -27,10 +28,19 @@ var tweets = [];
 get_data(api_url);
 console.log(tweets);
 
-document.write(tweets[0]);
+// document.write(tweets[0]);
+
+// for (let i = 0; i < 5; i++) {
+//     create_elements();
+// }
 
 /*
 Interesting JSON values:
+    entities - has some information like links, hashtags, mentions, and "media" idk what that is
+        urls - replaces {link}
+        hashtags 
+        user_mentions
+
     text - the actual tweet
 
     user

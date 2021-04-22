@@ -42,7 +42,7 @@ function get_data(url) {
                         "screen_name": data["statuses"][i]["user"]["screen_name"],
                         "profile_pic": data["statuses"][i]["user"]["profile_image_url_https"],
                         "hashtags": data["statuses"][i]["entities"]["hashtags"],
-                        "mentions": data["statuses"][i]["entities"]["mentions"],
+                        "mentions": data["statuses"][i]["entities"]["user_mentions"],
                         "urls": data["statuses"][i]["entities"]["urls"]
                     })
                 }

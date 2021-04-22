@@ -35,7 +35,7 @@ function get_data(url) {
                 // if the id is NOT in our json, then push it into tweet 
                 // this presents issues if multiple mentions, hashtags, urls
                 if (!(data["statuses"][i]["_id"] in our_data)) {
-                    our_data.tweets.push({
+                    our_data.push({
                         "_id": data["statuses"][i]["_id"],
                         "text": data["statuses"][i]["text"],
                         "name": data["statuses"][i]["user"]["name"],
@@ -44,11 +44,14 @@ function get_data(url) {
                         "hashtags": data["statuses"][i]["entities"]["hashtags"],
                         "mentions": data["statuses"][i]["entities"]["user_mentions"],
                         "urls": data["statuses"][i]["entities"]["urls"]
+                        // There doesn't seem to be a tweet creation date, the data.statuses[i].created_at value is actually from the search query
+                        // "creation_date": data["statuses"][i]["created_at"]
                     })
                 }
             }
-            console.log(our_data)
-            console.log(data)
+            our_data.sort((a, b) => (a.creation_date > b.creation_date) ? 1 : -1);
+            console.log(our_data);
+            console.log(data);
         })
         .catch(err => {
             console.log(err)
@@ -56,9 +59,7 @@ function get_data(url) {
 }
 
 const api_url = "http://twitterfeedserverrails-env.eba-xmqy8ybh.us-east-1.elasticbeanstalk.com/feed/random?q=weather"
-var our_data = {
-    "tweets": []
-}
+var our_data = []
 get_data(api_url);
 
 // Format is scope(window).setInterval(function, time (in ms), arguments)

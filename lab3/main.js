@@ -28,6 +28,9 @@ var tweets = [];
 get_data(api_url);
 console.log(tweets);
 
+// Format is scope(window).setinterval(function, time (in ms), arguments)
+window.setInterval(get_data, 10000, api_url);
+
 // document.write(tweets[0]);
 
 // for (let i = 0; i < 5; i++) {

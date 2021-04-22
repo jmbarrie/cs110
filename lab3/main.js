@@ -15,12 +15,40 @@ Interesting JSON values:
 */
 
 function create_elements(json) {
-    var body = document.getElementsByTagName('body')[0]
-    var newDiv = document.createElement('div');
+    /*
+    Uses the JSON data from API to dynamically create tweet elements. 
+    This might be an issue when considering updating the feed because it might
+    duplicate tweets. I think it is at this point we create a set to manage
+    what tweets are in. 
+    */
+    var body = document.getElementsByClassName('flex-child content-center')[0];
+    var tweetDiv = document.createElement('div');
+    var profilePic = document.createElement('img');
+    var userName = document.createElement('p');
+    var displayName = document.createElement('p');
+    var tweetText = document.createElement('p');
 
-    newDiv.id = 'testId';
-    newDiv.innerHTML = json;
-    body.appendChild(newDiv);
+    tweetDiv.className = 'tweet';
+    tweetDiv.id = json[0]._id;
+
+    profilePic.src = json[0].profile_pic;
+    profilePic.className = 'pfp_post';
+
+    tweetText.innerHTML = json[0].text;
+
+    userName.className = 'name';
+    userName.innerHTML = json[0].name;
+
+    displayName.className = 'grey';
+    displayName.innerHTML = '@' + json[0].screen_name;
+
+    // TODO: Figure out what is going on with userName and displayName in html
+    // There might be some playing we have to do with 'gray' and 'name' classes
+    tweetText.appendChild(userName);
+    tweetText.appendChild(displayName);
+    tweetDiv.appendChild(profilePic);
+    tweetDiv.appendChild(tweetText);
+    body.appendChild(tweetDiv);
 }
 
 function get_data(url) {
@@ -50,6 +78,7 @@ function get_data(url) {
                 }
             }
             our_data.sort((a, b) => (a.creation_date > b.creation_date) ? 1 : -1);
+            create_elements(our_data);
             console.log(our_data);
             console.log(data);
         })

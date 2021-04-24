@@ -35,7 +35,6 @@ function create_elements(json) {
     what tweets are in. 
     */
     let body = document.getElementsByClassName('flex-child content-center')[0];
-
     
     let tweetDiv = document.createElement('div');
     let profilePic = document.createElement('img');
@@ -49,20 +48,21 @@ function create_elements(json) {
     profilePic.src = json.profile_pic;
     profilePic.className = 'pfp_post';
 
-    tweetText.innerHTML = json.text;
-
     userName.className = 'name';
     userName.innerHTML = json.name;
 
     displayName.className = 'grey';
     
     displayName.innerHTML = '@' + json.screen_name + ' ' + processDate(json.creation_date);
-
+    
+    tweetText.className = 'needs_space';
+    tweetText.innerHTML = json.text;
     // TODO: Figure out what is going on with userName and displayName in html
     // There might be some playing we have to do with 'gray' and 'name' classes
-    tweetText.appendChild(userName);
-    tweetText.appendChild(displayName);
+    // No, it's something to do with the order it's called.
     tweetDiv.appendChild(profilePic);
+    tweetDiv.appendChild(userName);
+    tweetDiv.appendChild(displayName);
     tweetDiv.appendChild(tweetText);
     body.appendChild(tweetDiv);
 }

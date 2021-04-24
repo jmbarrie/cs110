@@ -21,34 +21,37 @@ function create_elements(json) {
     duplicate tweets. I think it is at this point we create a set to manage
     what tweets are in. 
     */
-    var body = document.getElementsByClassName('flex-child content-center')[0];
-    var tweetDiv = document.createElement('div');
-    var profilePic = document.createElement('img');
-    var userName = document.createElement('p');
-    var displayName = document.createElement('p');
-    var tweetText = document.createElement('p');
+    let body = document.getElementsByClassName('flex-child content-center')[0];
 
-    tweetDiv.className = 'tweet';
-    tweetDiv.id = json[0]._id;
-
-    profilePic.src = json[0].profile_pic;
-    profilePic.className = 'pfp_post';
-
-    tweetText.innerHTML = json[0].text;
-
-    userName.className = 'name';
-    userName.innerHTML = json[0].name;
-
-    displayName.className = 'grey';
-    displayName.innerHTML = '@' + json[0].screen_name;
-
-    // TODO: Figure out what is going on with userName and displayName in html
-    // There might be some playing we have to do with 'gray' and 'name' classes
-    tweetText.appendChild(userName);
-    tweetText.appendChild(displayName);
-    tweetDiv.appendChild(profilePic);
-    tweetDiv.appendChild(tweetText);
-    body.appendChild(tweetDiv);
+    for (let i = 0; i < json.length; i++) {
+        let tweetDiv = document.createElement('div');
+        let profilePic = document.createElement('img');
+        let userName = document.createElement('p');
+        let displayName = document.createElement('p');
+        let tweetText = document.createElement('p');
+    
+        tweetDiv.className = 'tweet';
+        tweetDiv.id = json[i]._id;
+    
+        profilePic.src = json[i].profile_pic;
+        profilePic.className = 'pfp_post';
+    
+        tweetText.innerHTML = json[i].text;
+    
+        userName.className = 'name';
+        userName.innerHTML = json[i].name;
+    
+        displayName.className = 'grey';
+        displayName.innerHTML = '@' + json[i].screen_name;
+    
+        // TODO: Figure out what is going on with userName and displayName in html
+        // There might be some playing we have to do with 'gray' and 'name' classes
+        tweetText.appendChild(userName);
+        tweetText.appendChild(displayName);
+        tweetDiv.appendChild(profilePic);
+        tweetDiv.appendChild(tweetText);
+        body.appendChild(tweetDiv);
+    }
 }
 
 function get_data(url) {
@@ -71,9 +74,8 @@ function get_data(url) {
                         "profile_pic": data["statuses"][i]["user"]["profile_image_url_https"],
                         "hashtags": data["statuses"][i]["entities"]["hashtags"],
                         "mentions": data["statuses"][i]["entities"]["user_mentions"],
-                        "urls": data["statuses"][i]["entities"]["urls"]
-                        // There doesn't seem to be a tweet creation date, the data.statuses[i].created_at value is actually from the search query
-                        // "creation_date": data["statuses"][i]["created_at"]
+                        "urls": data["statuses"][i]["entities"]["urls"],
+                        "creation_date": data["statuses"][i]["created_at"]
                     })
                 }
             }

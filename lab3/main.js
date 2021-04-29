@@ -111,7 +111,7 @@ function get_data(url) {
     }
 }
 
-const api_url = "http://twitterfeedserverrails-env.eba-xmqy8ybh.us-east-1.elasticbeanstalk.com/feed/random?q=weather"
+const api_url = "http://ec2-54-219-224-129.us-west-1.compute.amazonaws.com:2000/feed/random?q=weather"
 var our_data = []
 get_data(api_url);
 

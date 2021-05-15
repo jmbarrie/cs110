@@ -13,7 +13,11 @@ const MessageSchema = new Schema({
     type: String,
     required: true
   },
-  chatroom: {
+  chatroom_id: {
+      type: String,
+      required: true
+  },
+  chatroom_name: {
       type: String,
       required: true
   }

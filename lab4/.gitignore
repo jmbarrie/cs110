@@ -236,4 +236,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/windows
 
-config/
+config/default.json

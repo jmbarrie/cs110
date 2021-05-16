@@ -30,7 +30,7 @@ function getRoom(request, response){
             response.render('room', {
                 title: 'chatroom', 
                 roomName,
-                roomId 
+                newRoomId: roomId 
             })
         }
     })

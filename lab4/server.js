@@ -5,6 +5,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
+const Chatrooms = require('./models/Chatrooms')
+const roomGenerator = require('./util/roomIdGenerator.js');
 
 // import handlers
 const homeHandler = require('./controllers/home.js');
@@ -40,6 +42,19 @@ mongoose
   .catch(err => console.log(err));
 
 // Create controller handlers to handle requests at each endpoint
+app.post("/create", function(req, res) { 
+  const newRoom = new Chatrooms({
+    chatroom_name: req.body.roomName,
+    chatroom_id: roomGenerator.roomIdGenerator()
+  })
+  newRoom.save()
+    .then(item => {
+      console.log("room added")
+      console.log(item)
+    })
+    .catch(e => console.log(e))
+})
+app.get("/getRoom", homeHandler.getRoom)
 app.get('/', homeHandler.getHome);
 app.get('/:roomName', roomHandler.getRoom);
 

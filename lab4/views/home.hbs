@@ -1,2 +1,32 @@
 <h1> Home </h1>
 <p>This is the {{ title }} page</p>
+
+{{!-- TA lab4 additional code --}}
+{{#if isAvailable}}
+<ul id="chatList">
+    {{#each rooms}}
+        <li id="chatroom_name"> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
+    {{/each}}
+</ul>
+{{/if}}date
+
+<form action="/create" method="POST">
+    Chatroom: <input type="text" name="roomName"><br>
+    <button type="submit">Send to backend</button>
+</form>
+
+<script>
+    // TODO: get data like third lab
+    //window.setInterval(fetch("http://localhost:8080/getRoom")
+    //.then(items => {console.log(items)})
+    //.catch((err) => { console.log(err)}), 2000)
+    intervalID = window.setInterval(function(){
+    fetch("http://localhost:8080/getRoom")
+    .then(items => {console.log(items)})
+    .catch((err) => { console.log(err)})
+    }, 1000);
+    // TODO: Read about how to update IDs using handlebar's HTML elements, we need to update
+    // will need to add logic to the fetch's then statement to handle this
+    // possibly attach a child HTML element to the list of rooms 
+    //document.getElementById('chatthing').innerHTML('')
+</script>

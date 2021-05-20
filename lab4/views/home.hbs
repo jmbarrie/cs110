@@ -10,9 +10,9 @@
 </ul>
 {{/if}}
 
-<form action="/create" method="POST">
-    Chatroom: <input type="text" name="roomName"><br>
-    <button type="submit">Send to backend</button>
+<form action="/create" method="POST" id="roomForm">
+    Chatroom: <input type="text" name="roomName" id="roomNameField"><br>
+    <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Chatroom</button>
 </form>
 
 <script>
@@ -52,4 +52,12 @@
             })
     .catch((err) => { console.log(err) })
     }, 2000);
+
+    // Resets the form after user submits the name of the chatroom they want to create
+    function submitForm() {
+        var form = document.getElementById('roomForm')
+        form.submit()
+        form.reset()
+        return false;
+    }
 </script>

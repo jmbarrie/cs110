@@ -16,10 +16,7 @@
 </form>
 
 <script>
-    // TODO: get data like third lab
-    //window.setInterval(fetch("http://localhost:8080/getRoom")
-    //.then(items => {console.log(items)})
-    //.catch((err) => { console.log(err)}), 2000)
+    // TODO: Need to set HTML class types
     intervalID = window.setInterval(function(){
     fetch("http://localhost:8080/getRoom")
     .then(function (items) {
@@ -41,11 +38,12 @@
                     // If the chatrooms in JSON are NOT in the set
                     if (!(jsonResponse[i].chatroom_name in chatRoomSet)) {
                         let list_item = document.createElement('li');
-                        // TODO: need to figure out how to do hrefs for each item 
-                        list_item.href = `${jsonResponse[i].chatroom_name}`
-                        list_item.innerHTML = `${jsonResponse[i].chatroom_name}`
-                        console.log("In the ELSE loop: " + jsonResponse[i].chatroom_name)
+                        let aElement = document.createElement('a')
+                        aElement.innerHTML = `${jsonResponse[i].chatroom_name}`
+                        aElement.href = `${jsonResponse[i].chatroom_name}`
+                        list_item.appendChild(aElement)
                         chatList.appendChild(list_item)
+                        console.log(`new element ${jsonResponse[i].chatroom_name} added to room list`)
                     }
                 }
             })
@@ -53,9 +51,5 @@
 
             })
     .catch((err) => { console.log(err) })
-    }, 10000);
-    // TODO: Read about how to update IDs using handlebar's HTML elements, we need to update
-    // will need to add logic to the fetch's then statement to handle this
-    // possibly attach a child HTML element to the list of rooms 
-    //document.getElementById('chatthing').innerHTML('')
+    }, 2000);
 </script>

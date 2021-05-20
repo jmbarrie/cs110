@@ -22,9 +22,24 @@
     //.catch((err) => { console.log(err)}), 2000)
     intervalID = window.setInterval(function(){
     fetch("http://localhost:8080/getRoom")
-    .then(items => {console.log(items)})
-    .catch((err) => { console.log(err)})
-    }, 1000);
+    .then(function (items) {
+            items.json()
+            .then((jsonResponse) => {
+                chatList = document.getElementById('chatList')
+                chatListChildren = chatList.children
+
+                const chatRoomSet = new Set()
+                for (let i = 0; i < chatListChildren.length; ++i) {
+                    chatRoomSet.add(chatListChildren[i].innerText)
+                }
+                console.log(chatRoomSet)
+                console.log(jsonResponse)
+                })
+            .catch((err) => { console.log(err) })
+
+            })
+    .catch((err) => { console.log(err) })
+    }, 10000);
     // TODO: Read about how to update IDs using handlebar's HTML elements, we need to update
     // will need to add logic to the fetch's then statement to handle this
     // possibly attach a child HTML element to the list of rooms 

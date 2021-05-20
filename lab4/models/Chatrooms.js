@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const roomGenerator = require('../util/roomIdGenerator.js');
 const Schema = mongoose.Schema;
 const ChatroomSchema = new Schema({
   chatroom_id: {
       type: String,
+      default: roomGenerator.roomIdGenerator(),
       required: true
   },
   chatroom_name: {

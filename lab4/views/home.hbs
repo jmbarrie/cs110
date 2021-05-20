@@ -25,16 +25,30 @@
     .then(function (items) {
             items.json()
             .then((jsonResponse) => {
-                chatList = document.getElementById('chatList')
-                chatListChildren = chatList.children
+                let chatList = document.getElementById('chatList')
+                let chatListChildren = chatList.children
+                let chatRoomSet = {}
 
-                const chatRoomSet = new Set()
+                // Adding all currently displayed chatroom to a set
                 for (let i = 0; i < chatListChildren.length; ++i) {
-                    chatRoomSet.add(chatListChildren[i].innerText)
+                    chatRoomSet[chatListChildren[i].innerText] = true;
                 }
-                console.log(chatRoomSet)
-                console.log(jsonResponse)
-                })
+
+                console.log(chatListChildren)
+                console.log(chatRoomSet);
+                console.log(jsonResponse);
+                for (let i = 0; i < jsonResponse.length; ++i) {
+                    // If the chatrooms in JSON are NOT in the set
+                    if (!(jsonResponse[i].chatroom_name in chatRoomSet)) {
+                        let list_item = document.createElement('li');
+                        // TODO: need to figure out how to do hrefs for each item 
+                        list_item.href = `${jsonResponse[i].chatroom_name}`
+                        list_item.innerHTML = `${jsonResponse[i].chatroom_name}`
+                        console.log("In the ELSE loop: " + jsonResponse[i].chatroom_name)
+                        chatList.appendChild(list_item)
+                    }
+                }
+            })
             .catch((err) => { console.log(err) })
 
             })

@@ -5,12 +5,12 @@
 {{#if isAvailable}}
 <ul id="chatList">
     {{#each rooms}}
-        <li id="chatroom_name"> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
+        <li id={{ this.chatroom_name }}> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
     {{/each}}
 </ul>
 {{/if}}
 
-<form action="/create" method="POST" id="roomForm">
+<form action="/createRoom" method="POST" id="roomForm">
     Chatroom: <input type="text" name="roomName" id="roomNameField"><br>
     <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Chatroom</button>
 </form>
@@ -27,8 +27,10 @@
                 let chatRoomSet = {}
 
                 // Adding all currently displayed chatroom to a set
+                // TODO: Checkout why multiples show regardless of set
                 for (let i = 0; i < chatListChildren.length; ++i) {
-                    chatRoomSet[chatListChildren[i].innerText] = true;
+                    chatRoomSet[chatListChildren[i].id] = true;
+                    console.log('chatlist IDS: ' + chatListChildren[i].id)
                 }
 
                 console.log(chatListChildren)
@@ -41,9 +43,12 @@
                         let aElement = document.createElement('a')
                         aElement.innerHTML = `${jsonResponse[i].chatroom_name}`
                         aElement.href = `${jsonResponse[i].chatroom_name}`
+                        // list_item.id = `${jsonResponse[i].chatroom_id}`
+                        list_item.id = `${jsonResponse[i].chatroom_name}`
                         list_item.appendChild(aElement)
                         chatList.appendChild(list_item)
                         console.log(`new element ${jsonResponse[i].chatroom_name} added to room list`)
+                        chatRoomSet[jsonResponse[i].chatroom_name] = true;
                     }
                 }
             })
@@ -55,6 +60,7 @@
 
     // Resets the form after user submits the name of the chatroom they want to create
     function submitForm() {
+        // TODO: Consider validation here using getbyId with chatlist and its children
         var form = document.getElementById('roomForm')
         form.submit()
         form.reset()

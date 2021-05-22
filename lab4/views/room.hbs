@@ -1,6 +1,98 @@
-<h1> Room </h1>
+<h1 id={{ roomName }}> Room </h1>
 <p>This is a demo of chatroom page</p>
 <p>
     The room you are visiting is {{ roomName }}
 </p>
-<p>To generate a new room, here is the room id: {{ newRoomId }}</p>
+
+<form action="/createMessage" method="POST" id="messageForm">
+    Message: <input type="text" name="text_body" id="nickNameField"><br>
+    <input type="hidden" name="chatroom_name" value={{ roomName }} />
+    <input type="hidden" name="nickname" id="nicknameField"/>
+    {{!-- <input type="hidden" name="dateOfEntry" id="dateField"/> --}}
+    <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Message</button>
+</form>
+
+{{#if isAvailable}}
+<ul id="messageList">
+    {{#each messages}}
+        <li id={{this._id}}>{{this.nickname}} {{this.dateOfEntry}}</li> 
+            <ul>
+                <li>{{this.text_body}}</li>
+            </ul>
+    {{/each}}
+</ul>
+{{/if}}
+
+<script>
+    // TODO: Need to set HTML class types
+    while(true) {
+        var nickname = prompt("Enter your nickname")
+
+        if (nickname && !(nickname.trim() === "") ) {
+            document.cookie = `nickname=${nickname}`
+            break
+        } else {
+            alert('Please enter a nickname')
+        }
+    }
+    var rName = document.getElementsByTagName('h1')[0].id
+    intervalID = window.setInterval(function(){
+    fetch(`http://localhost:8080/getMessages`)
+    .then(function (items) {
+            items.json()
+            .then((jsonResponse) => {
+                console.log(jsonResponse)
+                /*
+                chatroom_name: "a"
+                dateOfEntry: "2021-05-22T17:56:18.196Z"
+                nickname: "test"
+                text_body: "THIS IS A TEST MSG"
+                _id: "60a944e0a3beafbc43944c53"
+                */
+
+                let messageList = document.getElementById('messageList')
+                let messageListChildren = messageList.children
+                let messageSet = {}
+
+                // Adding all currently displayed messages to a set
+                for (let i = 0; i < messageListChildren.length; ++i) {
+                    messageSet[messageListChildren[i].id] = true;
+                }
+
+                console.log(messageListChildren)
+                console.log(messageSet);
+                console.log(jsonResponse);
+                for (let i = 0; i < jsonResponse.length; ++i) {
+                    // If the chatrooms in JSON are NOT in the set
+                    if (!(jsonResponse[i]._id in messageSet) && jsonResponse[i].chatroom_name === rName) {
+                        let list_item = document.createElement('li');
+                        let inner_list = document.createElement('ul')
+                        let inner_list_item = document.createElement('li')
+                        list_item.innerHTML = `${jsonResponse[i].nickname} ${jsonResponse[i].dateOfEntry}`
+                        inner_list_item.innerHTML = `${jsonResponse[i].text_body}`
+                        inner_list.appendChild(inner_list_item)
+                        list_item.appendChild(inner_list)
+                        list_item.id = jsonResponse[i]._id
+                        messageList.appendChild(list_item)
+                        console.log(`new chat added to message list`)
+                    }
+                }
+            })
+            .catch((err) => { console.log(err) })
+
+            })
+    .catch((err) => { console.log(err) })
+    }, 3000);
+
+    // Resets the form after user submits the name of the chatroom they want to create
+    function submitForm() {
+        // TODO: Consider validation here using getbyId with chatlist and its children
+        var form = document.getElementById('messageForm')
+        document.getElementById('nicknameField').value = document.cookie.split('=')[1]
+        //date = new Date()
+        //document.getElementById('dateField').value = date
+        form.submit()
+        form.reset()
+        return false;
+    }
+</script>

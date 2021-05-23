@@ -12,16 +12,19 @@
     <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Message</button>
 </form>
 
-{{#if isAvailable}}
-<ul id="messageList">
-    {{#each messages}}
-        <li id={{this._id}}>{{this.nickname}} {{this.dateOfEntry}}</li> 
-            <ul>
-                <li>{{this.text_body}}</li>
-            </ul>
-    {{/each}}
-</ul>
-{{/if}}
+<div>
+    {{#if isAvailable}}
+    <ul id="messageList">
+        {{#each messages}}
+            <li id={{this._id}}>{{this.nickname}} {{this.dateOfEntry}} 
+                <ul>
+                    <li>{{this.text_body}}</li>
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>
 
 <script>
     // TODO: Need to set HTML class types

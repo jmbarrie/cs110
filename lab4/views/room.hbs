@@ -1,33 +1,34 @@
-<h1 id={{ roomName }}> Room </h1>
-<p>This is a demo of chatroom page</p>
-<p>
-    The room you are visiting is {{ roomName }}
-</p>
 
-<form action="/createMessage" method="POST" id="messageForm">
-    Message: <input type="text" name="text_body" id="nickNameField"><br>
-    <input type="hidden" name="chatroom_name" value={{ roomName }} />
-    <input type="hidden" name="nickname" id="nicknameField"/>
-    {{!-- <input type="hidden" name="dateOfEntry" id="dateField"/> --}}
-    <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Message</button>
-</form>
-
+<h1 id="chatRoomTitle"> Chatroom: {{ roomName }} </h1>
 <div>
-    {{#if isAvailable}}
-    <ul id="messageList" class="message-container">
-        {{#each messages}}
-            <li id={{this._id}}>{{this.nickname}} {{this.dateOfEntry}} 
-                <ul>
-                    <li>{{this.text_body}}</li>
-                </ul>
-            </li>
-        {{/each}}
-    </ul>
-    {{/if}}
+    <div>
+        <form action="/createMessage" method="POST" id="messageForm">
+            <input type="text" name="text_body" id="nickNameField">
+            <input type="hidden" name="chatroom_name" value={{ roomName }} />
+            <input type="hidden" name="nickname" id="nicknameField"/>
+            {{!-- <input type="hidden" name="dateOfEntry" id="dateField"/> --}}
+            <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Send Message</button>
+        </form>
+    </div>
+
+    <div id="message-container">
+        {{#if isAvailable}}
+        <ul id="messageList" class="messageList">
+            {{#each messages}}
+                <li id={{this._id}}> 
+                    <ul>
+                        <li class="chatMessage"><h1>{{this.nickname}}</h1> <h2>({{this.dateOfEntry}})</h2><p>: {{this.text_body}}</p></li>
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
 </div>
 
 <script>
     // TODO: Need to set HTML class types
+    /*
     while(true) {
         var nickname = prompt("Enter your nickname")
 
@@ -38,6 +39,7 @@
             alert('Please enter a nickname')
         }
     }
+    */
     var rName = document.getElementsByTagName('h1')[0].id
     intervalID = window.setInterval(function(){
     fetch(`http://localhost:8080/getMessages`)
@@ -73,11 +75,12 @@
                         let chatMessageInnerList = document.createElement('ul')
                         let chatMessageBodyText = document.createElement('li')
                         // Set up the header for the chat message header
-                        chatMessageHeader.innerHTML = `${jsonResponse[i].nickname} ${jsonResponse[i].dateOfEntry}`
                         chatMessageHeader.id = jsonResponse[i]._id
 
                         // Set up the chat message body and append to the inner list
-                        chatMessageBodyText.innerHTML = `${jsonResponse[i].text_body}`
+                        chatMessageBodyText.className = "chatMessage"
+//                        chatMessageBodyText.h1 = `${jsonResponse[i].nickname}`
+                        chatMessageBodyText.innerHTML = `<h1>${jsonResponse[i].nickname}</h1> <h2>(${jsonResponse[i].dateOfEntry})</h2><p>: ${jsonResponse[i].text_body}</p>`
                         chatMessageInnerList.appendChild(chatMessageBodyText)
                         chatMessageHeader.appendChild(chatMessageInnerList)
 

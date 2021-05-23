@@ -14,7 +14,7 @@
 
 <div>
     {{#if isAvailable}}
-    <ul id="messageList">
+    <ul id="messageList" class="message-container">
         {{#each messages}}
             <li id={{this._id}}>{{this.nickname}} {{this.dateOfEntry}} 
                 <ul>

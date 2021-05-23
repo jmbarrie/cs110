@@ -1,1 +1,15 @@
 /* TODO: style each page */
+body {
+  background-color: #d3d3d3;
+}
+
+.message-container {
+  list-style: none;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.message-container > li > ul {
+  list-style: none;
+}

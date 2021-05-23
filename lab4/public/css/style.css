@@ -3,27 +3,6 @@ body {
   background-color: #d3d3d3;
 }
 
-.chatRoomTitle {
-  color: black;
-  margin: auto;
-  margin-top: 5%;
-  text-align: center;
-  /* width: 0%; */
-  /* padding: 10px 24px 24px; */
-}
-
-.messageList {
-  list-style: none;
-  border: 0.5px solid black;
-  background-color: white;
-  padding-left: 0;
-}
-
-.messageList > li > ul {
-  list-style: none;
-  text-align: left;
-}
-
 h1 {
   color: #707070;
   font-family: Arial;
@@ -60,6 +39,29 @@ input {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* Chatroom stuff */
+
+.chatRoomTitle {
+  color: black;
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+  /* width: 0%; */
+  /* padding: 10px 24px 24px; */
+}
+
+.messageList {
+  list-style: none;
+  border: 0.5px solid black;
+  background-color: white;
+  padding-left: 0;
+}
+
+.messageList > li > ul {
+  list-style: none;
+  text-align: left;
+}
+
 #messageForm {
   text-align: center;
 }
@@ -83,7 +85,8 @@ input {
 
 .chatMessage {
   color: red;
-  margin-top: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .chatMessage h1 {

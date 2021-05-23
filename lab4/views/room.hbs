@@ -6,7 +6,6 @@
             <input type="text" name="text_body" id="nickNameField">
             <input type="hidden" name="chatroom_name" value={{ roomName }} />
             <input type="hidden" name="nickname" id="nicknameField"/>
-            {{!-- <input type="hidden" name="dateOfEntry" id="dateField"/> --}}
             <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Send Message</button>
         </form>
     </div>
@@ -17,7 +16,7 @@
             {{#each messages}}
                 <li id={{this._id}}> 
                     <ul>
-                        <li class="chatMessage"><h1>{{this.nickname}}</h1> <h2>({{this.dateOfEntry}})</h2><p>: {{this.text_body}}</p></li>
+                        <li class="chatMessage"><h1>{{this.nickname}}</h1> <h2>({{this.created_at}})</h2><p>: {{this.text_body}}</p></li>
                     </ul>
                 </li>
             {{/each}}
@@ -47,7 +46,7 @@
                 console.log(jsonResponse)
                 /*
                 chatroom_name: "a"
-                dateOfEntry: "2021-05-22T17:56:18.196Z"
+                created_at: "2021-05-22T17:56:18.196Z"
                 nickname: "test"
                 text_body: "THIS IS A TEST MSG"
                 _id: "60a944e0a3beafbc43944c53"
@@ -76,7 +75,7 @@
 
                         // Set up the chat message body and append to the inner list
                         chatMessageBodyText.className = "chatMessage"
-                        chatMessageBodyText.innerHTML = `<h1>${jsonResponse[i].nickname}</h1> <h2>(${jsonResponse[i].dateOfEntry})</h2><p>: ${jsonResponse[i].text_body}</p>`
+                        chatMessageBodyText.innerHTML = `<h1>${jsonResponse[i].nickname}</h1> <h2>(${jsonResponse[i].created_at})</h2><p>: ${jsonResponse[i].text_body}</p>`
                         chatMessageInnerList.appendChild(chatMessageBodyText)
                         chatMessageHeader.appendChild(chatMessageInnerList)
 
@@ -97,8 +96,6 @@
         // TODO: Consider validation here using getbyId with chatlist and its children
         var form = document.getElementById('messageForm')
         document.getElementById('nicknameField').value = document.cookie.split('=')[1]
-        //date = new Date()
-        //document.getElementById('dateField').value = date
         form.submit()
         form.reset()
         return false;

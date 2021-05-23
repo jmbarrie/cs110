@@ -45,7 +45,7 @@ function getRoom(request, response) {
 
 function getMessages(request, response) {
   Messages.find()
-    .sort({ dateOfEntry: -1 })
+    .sort({ created_at: -1 })
     .lean()
     .then((items) => {
       response.json(items);

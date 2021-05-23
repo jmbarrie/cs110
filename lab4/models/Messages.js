@@ -5,9 +5,10 @@ const MessageSchema = new Schema({
     type: String,
     required: true,
   },
-  dateOfEntry: {
-    type: Date,
+  created_at: {
+    type: String,
     default: new Date(),
+    required: true,
   },
   text_body: {
     type: String,

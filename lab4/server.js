@@ -73,10 +73,21 @@ app.post("/createRoom", function (req, res) {
 });
 
 app.post("/createMessage", function (req, res) {
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    timeZone: "America/Los_Angeles",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
   const newMessage = new Messages({
     chatroom_name: req.body.chatroom_name,
     nickname: req.body.nickname,
     text_body: req.body.text_body,
+    created_at: new Date().toLocaleDateString("en-US", options),
   });
 
   newMessage

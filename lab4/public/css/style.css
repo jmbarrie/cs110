@@ -13,3 +13,39 @@ body {
 .message-container > li > ul {
   list-style: none;
 }
+
+h1 {
+    color: #707070;
+    font-family: Arial;
+}
+
+.content-center {
+    /* display: flex;
+    justify-content: center; */
+    margin: auto;
+    margin-top: 10%;
+    width: 60%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px 24px 24px;
+}
+
+input {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#submitButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 12   px;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

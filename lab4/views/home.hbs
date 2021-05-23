@@ -1,20 +1,23 @@
-<h1> Home </h1>
-<p>This is the {{ title }} page</p>
+<div class="content-center"> 
+    <h1> Home </h1>
+    <p>This is the {{ title }} page</p>
 
-{{!-- TA lab4 additional code --}}
-{{#if isAvailable}}
-<ul id="chatList">
-    {{#each rooms}}
-        <li id={{ this.chatroom_name }}> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
-    {{/each}}
-</ul>
-{{/if}}
+    {{!-- TA lab4 additional code --}}
+    {{#if isAvailable}}
+    <ul id="chatList">
+        {{#each rooms}}
+            <li id={{ this.chatroom_name }}> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
+        {{/each}}
+    </ul>
+    {{/if}}
 
-<form action="/createRoom" method="POST" id="roomForm">
-    Chatroom: <input type="text" name="roomName" id="roomNameField"><br>
-    <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Chatroom</button>
-</form>
+    <form action="/createRoom" method="POST" id="roomForm">
+        Chatroom: <input type="text" name="roomName" id="roomNameField"><br>
+        <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Chatroom</button>
+    </form>
+</div>
 
+<link rel="stylesheet" href="../css/style.css">
 <script>
     // TODO: Need to set HTML class types
     intervalID = window.setInterval(function(){

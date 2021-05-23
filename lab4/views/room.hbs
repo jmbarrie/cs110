@@ -1,5 +1,5 @@
 
-<h1 id="chatRoomTitle"> Chatroom: {{ roomName }} </h1>
+<h1 id={{ roomName }} class="chatRoomTitle"> Chatroom: {{ roomName }} </h1>
 <div>
     <div>
         <form action="/createMessage" method="POST" id="messageForm">
@@ -64,7 +64,6 @@
 
                 console.log(messageListChildren)
                 console.log(messageSet);
-                console.log(jsonResponse);
 
                 for (let i = 0; i < jsonResponse.length; ++i) {
                     // If the chatrooms in JSON are NOT in the set
@@ -77,7 +76,6 @@
 
                         // Set up the chat message body and append to the inner list
                         chatMessageBodyText.className = "chatMessage"
-//                        chatMessageBodyText.h1 = `${jsonResponse[i].nickname}`
                         chatMessageBodyText.innerHTML = `<h1>${jsonResponse[i].nickname}</h1> <h2>(${jsonResponse[i].dateOfEntry})</h2><p>: ${jsonResponse[i].text_body}</p>`
                         chatMessageInnerList.appendChild(chatMessageBodyText)
                         chatMessageHeader.appendChild(chatMessageInnerList)

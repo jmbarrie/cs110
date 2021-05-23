@@ -3,7 +3,7 @@ body {
   background-color: #d3d3d3;
 }
 
-#chatRoomTitle {
+.chatRoomTitle {
   color: black;
   margin: auto;
   margin-top: 5%;

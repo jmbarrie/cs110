@@ -65,18 +65,24 @@
                 console.log(messageListChildren)
                 console.log(messageSet);
                 console.log(jsonResponse);
+
                 for (let i = 0; i < jsonResponse.length; ++i) {
                     // If the chatrooms in JSON are NOT in the set
                     if (!(jsonResponse[i]._id in messageSet) && jsonResponse[i].chatroom_name === rName) {
-                        let list_item = document.createElement('li');
-                        let inner_list = document.createElement('ul')
-                        let inner_list_item = document.createElement('li')
-                        list_item.innerHTML = `${jsonResponse[i].nickname} ${jsonResponse[i].dateOfEntry}`
-                        inner_list_item.innerHTML = `${jsonResponse[i].text_body}`
-                        inner_list.appendChild(inner_list_item)
-                        list_item.appendChild(inner_list)
-                        list_item.id = jsonResponse[i]._id
-                        messageList.appendChild(list_item)
+                        let chatMessageHeader = document.createElement('li');
+                        let chatMessageInnerList = document.createElement('ul')
+                        let chatMessageBodyText = document.createElement('li')
+                        // Set up the header for the chat message header
+                        chatMessageHeader.innerHTML = `${jsonResponse[i].nickname} ${jsonResponse[i].dateOfEntry}`
+                        chatMessageHeader.id = jsonResponse[i]._id
+
+                        // Set up the chat message body and append to the inner list
+                        chatMessageBodyText.innerHTML = `${jsonResponse[i].text_body}`
+                        chatMessageInnerList.appendChild(chatMessageBodyText)
+                        chatMessageHeader.appendChild(chatMessageInnerList)
+
+                        // Append the whole chat item to the message box
+                        messageList.appendChild(chatMessageHeader)
                         console.log(`new chat added to message list`)
                     }
                 }

@@ -101,7 +101,6 @@ function get_data(url) {
                     our_data[i].tweeted = true;
                 }
             }
-            console.log(id_list);
             console.log(our_data);
             console.log(data);
         })

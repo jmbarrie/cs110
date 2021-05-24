@@ -1,0 +1,72 @@
+<div class="content-center"> 
+    <h1> Home </h1>
+    <p>This is the {{ title }} page</p>
+
+    {{!-- TA lab4 additional code --}}
+    {{#if isAvailable}}
+    <ul id="chatList">
+        {{#each rooms}}
+            <li id={{ this.chatroom_name }}> <a href={{this.chatroom_name}}> {{this.chatroom_name}} </a></li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    <form action="/createRoom" method="POST" id="roomForm">
+        Chatroom: <input type="text" name="roomName" id="roomNameField"><br>
+        <button type="button" value="Submit" id="submitButton" onclick="submitForm()">Create Chatroom</button>
+    </form>
+</div>
+
+<link rel="stylesheet" href="../css/style.css">
+<script>
+    // TODO: Need to set HTML class types
+    intervalID = window.setInterval(function(){
+    fetch("http://localhost:8080/getRoom")
+    .then(function (items) {
+            items.json()
+            .then((jsonResponse) => {
+                let chatList = document.getElementById('chatList')
+                let chatListChildren = chatList.children
+                let chatRoomSet = {}
+
+                // Adding all currently displayed chatroom to a set
+                // TODO: Checkout why multiples show regardless of set
+                for (let i = 0; i < chatListChildren.length; ++i) {
+                    chatRoomSet[chatListChildren[i].id] = true;
+                    console.log('chatlist IDS: ' + chatListChildren[i].id)
+                }
+
+                console.log(chatListChildren)
+                console.log(chatRoomSet);
+                console.log(jsonResponse);
+                for (let i = 0; i < jsonResponse.length; ++i) {
+                    // If the chatrooms in JSON are NOT in the set
+                    if (!(jsonResponse[i].chatroom_name in chatRoomSet)) {
+                        let list_item = document.createElement('li');
+                        let aElement = document.createElement('a')
+                        aElement.innerHTML = `${jsonResponse[i].chatroom_name}`
+                        aElement.href = `${jsonResponse[i].chatroom_name}`
+                        // list_item.id = `${jsonResponse[i].chatroom_id}`
+                        list_item.id = `${jsonResponse[i].chatroom_name}`
+                        list_item.appendChild(aElement)
+                        chatList.appendChild(list_item)
+                        console.log(`new element ${jsonResponse[i].chatroom_name} added to room list`)
+                        chatRoomSet[jsonResponse[i].chatroom_name] = true;
+                    }
+                }
+            })
+            .catch((err) => { console.log(err) })
+
+            })
+    .catch((err) => { console.log(err) })
+    }, 2000);
+
+    // Resets the form after user submits the name of the chatroom they want to create
+    function submitForm() {
+        // TODO: Consider validation here using getbyId with chatlist and its children
+        var form = document.getElementById('roomForm')
+        form.submit()
+        form.reset()
+        return false;
+    }
+</script>

@@ -3,6 +3,9 @@ Written by Juan Barrientos and Elise Lin.
 
 ## Project Description
 <!-- you can include known bugs, design decisions, external references used... -->
+All requirements mentioned in Lab4 specs are satisfied. 
+### Known bugs
+Messages are posted again after 2 minutes for unknown reason. 
 ### How to Run Code
 Please have the following pre-installed. 
 1. npm install config

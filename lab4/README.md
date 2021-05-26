@@ -4,6 +4,8 @@ Written by Juan Barrientos and Elise Lin.
 ## Project Description
 <!-- you can include known bugs, design decisions, external references used... -->
 All requirements mentioned in Lab4 specs are satisfied. 
+### Notes
+For the Backend requirements "GET /:roomName/messages", we have implemented it as "GET /:roomName/". This will return all messages of a chatroom to the client.
 ### Known bugs
 Messages are posted again after 2 minutes for unknown reason. 
 ### How to Run Code
